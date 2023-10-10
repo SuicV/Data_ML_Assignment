@@ -18,6 +18,7 @@ seaborn = "*"
 pytest = "*"
 black = "*"
 pylint = "*"
+sqlalchemy = "*"
 
 [dev-packages]
 

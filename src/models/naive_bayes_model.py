@@ -13,3 +13,4 @@ class NaiveBayesModel(BaseModel):
                     ('nbc', MultinomialNB(**kwargs))
                 ])
         )
+        self.name = "Naive Bayes"

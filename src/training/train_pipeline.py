@@ -5,11 +5,12 @@ from sklearn.model_selection import train_test_split
 
 from src.constants import RAW_DATASET_PATH, MODELS_PATH, REPORTS_PATH, LABELS_MAP
 from src.models.base_model import BaseModel
+from src.models.naive_bayes_model import NaiveBayesModel
 from src.utils.plot_utils import PlotUtils
 
 
 class TrainingPipeline:
-    def __init__(self, model: BaseModel):
+    def __init__(self, model: BaseModel = NaiveBayesModel()):
         df = pd.read_csv(RAW_DATASET_PATH)
 
         text = df['resume']

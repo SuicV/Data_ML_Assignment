@@ -4,12 +4,12 @@ from sklearn.metrics import accuracy_score, f1_score, confusion_matrix
 from sklearn.model_selection import train_test_split
 
 from src.constants import RAW_DATASET_PATH, MODELS_PATH, REPORTS_PATH, LABELS_MAP
-from src.models.naive_bayes_model import NaiveBayesModel
+from src.models.base_model import BaseModel
 from src.utils.plot_utils import PlotUtils
 
 
 class TrainingPipeline:
-    def __init__(self):
+    def __init__(self, model: BaseModel):
         df = pd.read_csv(RAW_DATASET_PATH)
 
         text = df['resume']
@@ -22,10 +22,9 @@ class TrainingPipeline:
             random_state=0
         )
 
-        self.model = None
+        self.model = model
 
     def train(self, serialize: bool = True, model_name: str = 'model'):
-        self.model = NaiveBayesModel()
         self.model.fit(
             self.x_train,
             self.y_train
@@ -49,7 +48,7 @@ class TrainingPipeline:
         PlotUtils.plot_confusion_matrix(
             cm,
             classes=list(LABELS_MAP.values()),
-            title='Naive Bayes'
+            title=self.model.name
         )
 
         plot_path = REPORTS_PATH / f'{plot_name}.png'

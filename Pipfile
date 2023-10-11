@@ -19,6 +19,7 @@ pytest = "*"
 black = "*"
 pylint = "*"
 sqlalchemy = "*"
+httpx = "*"
 
 [dev-packages]
 

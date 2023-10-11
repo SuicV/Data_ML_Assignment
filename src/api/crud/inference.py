@@ -6,7 +6,7 @@ from src.db import models
 def save_inference(db: Session, inference: schemas.Inference):
     db_inference = models.Inference(
         id = str(uuid4()),
-        **inference.dict()
+        **inference.model_dump()
     )
     db.add(db_inference)
     db.commit()
